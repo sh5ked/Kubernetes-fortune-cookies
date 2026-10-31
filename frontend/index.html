@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Cookie Factory</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5ead8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            color: #8b572a;
+        }
+
+        button {
+            background: #d99b42;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #b97c2d;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        #fortune {
+            font-size: 20px;
+            color: #444;
+            margin: 25px 0;
+            min-height: 50px;
+        }
+
+        .details {
+            background: #f8f4ed;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .details p {
+            margin: 8px 0;
+        }
+
+        #status {
+            color: #b00020;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Fortune Cookie Factory</h1>
+
+        <p>Discover what the future has in store for you!</p>
+
+        <button id="fortuneButton">
+            Open Your Fortune Cookie
+        </button>
+
+        <div id="fortune">
+            Your fortune will appear here...
+        </div>
+
+        <div class="details">
+            <p><strong>API Pod:</strong> <span id="pod">-</span></p>
+            <p><strong>API Version:</strong> <span id="version">-</span></p>
+        </div>
+
+        <p id="status"></p>
+
+    </div>
+
+    <script>
+        const button = document.getElementById("fortuneButton");
+
+        button.addEventListener("click", async () => {
+
+            button.disabled = true;
+            document.getElementById("status").textContent = "";
+
+            try {
+                const response = await fetch("/api/fortune");
+
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+
+                const data = await response.json();
+
+                document.getElementById("fortune").textContent = data.fortune;
+                document.getElementById("pod").textContent = data.pod;
+                document.getElementById("version").textContent = data.version;
+
+            } catch (error) {
+
+                document.getElementById("status").textContent =
+                    "Could not connect to Fortune API.";
+
+                console.error(error);
+
+            } finally {
+                button.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
