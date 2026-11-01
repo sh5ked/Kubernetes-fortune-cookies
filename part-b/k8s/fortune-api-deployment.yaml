@@ -7,6 +7,13 @@ metadata:
 spec:
   replicas: 3
 
+  # Rolling Update configuration
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
   selector:
     matchLabels:
       app: fortune-api
@@ -19,7 +26,7 @@ spec:
     spec:
       containers:
         - name: fortune-api
-          image: fortune-api:v1
+          image: fortune-api:v2
           imagePullPolicy: Never
 
           ports:
@@ -27,4 +34,4 @@ spec:
 
           env:
             - name: APP_VERSION
-              value: "v1"
+              value: "v2"

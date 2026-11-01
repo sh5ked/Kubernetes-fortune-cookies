@@ -9,16 +9,16 @@ const PORT = 3000;
 
 // Fortune messages
 const fortunes = [
-    "Your greatest adventure is just around the corner.",
-    "Small steps lead to big achievements.",
-    "Believe in yourself and make things happen.",
-    "A new opportunity will soon find its way to you.",
-    "Your patience will bring great rewards.",
-    "Today is the perfect day to start something new.",
-    "Great things take time. Keep going.",
-    "Your creativity will open unexpected doors.",
-    "A positive attitude creates positive results.",
-    "The best is yet to come."
+    "V2: Your next adventure will be amazing.",
+    "V2: Success is closer than you think.",
+    "V2: Great opportunities are coming your way.",
+    "V2: Believe in yourself and keep moving forward.",
+    "V2: Today is the beginning of something wonderful.",
+    "V2: Your hard work will soon pay off.",
+    "V2: A surprising opportunity awaits you.",
+    "V2: Happiness grows when you share it.",
+    "V2: Never stop learning and exploring.",
+    "V2: The best chapters of your story are ahead."
 ];
 
 // Fortune API endpoint
